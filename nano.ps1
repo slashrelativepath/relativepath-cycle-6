@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 if ( get-command choco )
 {
   write-host "choco already installed"
@@ -17,3 +18,4 @@ else
   write-host "installing nano"
   choco install -y nano
 }
+

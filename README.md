@@ -14,12 +14,6 @@ Windows:
 
 `./newfile.ps1`
 
+ `set-executionpolicy bypass -scope process -force; .\windows.ps1`
 
-
-
-
-
-
-
- 
 
