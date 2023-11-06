@@ -5,3 +5,7 @@
 Mac:
 
 `zsh mac.sh`
+
+Linux:
+
+`bash linux.sh` 
