@@ -9,3 +9,17 @@ Mac:
 Linux:
 
 `bash linux.sh` 
+
+Windows: 
+
+`./newfile.ps1`
+
+
+
+
+
+
+
+
+ 
+
