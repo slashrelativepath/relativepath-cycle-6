@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 if ( get-command choco )
 {
   write-host "choco already installed"
