@@ -6,6 +6,8 @@ Mac:
 
 `zsh mac.sh`
 
+`zsh-complete.sh`
+
 Linux:
 
 `bash linux.sh` 
