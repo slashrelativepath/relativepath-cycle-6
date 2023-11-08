@@ -18,5 +18,5 @@ Mac scripts:
 
 Git autocomplete for zsh:
 
-`zsh-complete.sh`
+`zsh zsh-complete.sh`
 
