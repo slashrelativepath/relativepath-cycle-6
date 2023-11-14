@@ -1,3 +1,5 @@
+# powershell script to build a webserver.
+
 if ( get-command choco )
 {
   write-host "choco already installed"
@@ -18,3 +20,24 @@ else
   choco install -y nano
 }
 
+
+if ( get-command git )
+{
+  write-host "git already installed"
+}
+else
+{
+  write-host "installing git"
+  choco install -y git.install --params "'/GitAndUnixToolsOnPath /WindowsTerminal'"
+}
+
+
+if ( get-command multipass )
+{
+  write-host "multipass already installed"
+}
+else
+{
+  write-host "installing multipass"
+  choco install -y choco install virtualbox multipass --params="'/HyperVisor:VirtualBox'"
+}
