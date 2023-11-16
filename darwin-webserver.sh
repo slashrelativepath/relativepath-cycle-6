@@ -1,4 +1,4 @@
-# A scipt to install homebrew
+# A script to build webserver
 
 if (which brew)
 then
@@ -8,7 +8,7 @@ echo "installing brew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# A script to install htop 
+# monitor with htop
 
 if (which htop)
 then
@@ -18,7 +18,7 @@ echo "installing htop"
 brew install htop
 fi
 
-# A script to install nano
+# nano for text editing
 
 if (which nano)
 then 
@@ -26,4 +26,14 @@ then
 else
  echo "installing nano"
 brew install nano
+fi
+
+# install hypervisor
+
+if (multipass version)
+then
+ echo "multipass is installed"
+else
+ echo "installing multipass"
+brew install multipass
 fi
