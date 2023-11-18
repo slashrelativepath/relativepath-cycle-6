@@ -7,6 +7,6 @@ then
   echo "multipass already intall"
 else
   echo "install multipass"
-  sudo apt install -y multipass
+  sudo snap install -y multipass
 fi
 
