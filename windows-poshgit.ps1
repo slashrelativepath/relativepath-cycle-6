@@ -26,16 +26,16 @@ else
 }
 
 
-# poshgit should be installed
+# posh-git should be installed
 
-if (get-command poshgit)
+if (get-command posh-git)
 { 
   echo "poshgit already installed"
 }
 else
 {
-  echo "installing poshgit"
-  choco install poshgit
+  echo "installing posh-git"
+  choco install -y poshgit
 }
 
 
