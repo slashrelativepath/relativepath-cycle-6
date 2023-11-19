@@ -17,7 +17,7 @@ else
 
 if (get-command git)
 {
-  echo "chocolatey already installed"
+  echo "git already installed"
 }
 else
 { 
