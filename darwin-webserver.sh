@@ -54,5 +54,3 @@ fi
 
 
 
-multipass launch --name relativepath
-multipass shell relativepath
