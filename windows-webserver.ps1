@@ -41,3 +41,6 @@ else
   write-host "installing multipass"
   choco install -y choco install virtualbox multipass --params="'/HyperVisor:VirtualBox'"
 }
+
+multipass launch --name relativepath
+multipass shell relativepath
