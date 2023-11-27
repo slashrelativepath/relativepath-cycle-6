@@ -35,7 +35,15 @@ then
  echo "multipass is installed"
 else
  echo "installing multipass"
-brew install multipass
+ brew install multipass
+fi
+
+if [ -f ./id_ed25519 ]
+then
+  echo "ssh key already created"
+else
+  echo "Creating ssh key pair"
+  ssh-keygen -t ed25519 -f "./id_ed25519" -C "cycle6@relativepath.tech"
 fi
 
 # Spinning up an ubuntu vm
@@ -48,6 +56,11 @@ else
   multipass launch --name relativepath 
 fi
 
+# SSh into virtual machine
+
+# Install nginx on virtual machine
+
+# Test webserver
 
 
 
