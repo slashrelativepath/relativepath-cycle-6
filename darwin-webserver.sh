@@ -43,7 +43,7 @@ then
   echo "ssh key already created"
 else
   echo "Creating ssh key pair"
-  ssh-keygen -t ed25519 -f "./id_ed25519" -C "cycle6@relativepath.tech"
+  ssh-keygen -t ed25519 -f "./id_ed25519" -N ''
 fi
 
 # Spinning up an ubuntu vm
