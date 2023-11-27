@@ -37,3 +37,20 @@ else
  echo "installing multipass"
 brew install multipass
 fi
+
+# Spinning up an ubuntu vm
+
+if ( multipass info relativepath )
+then 
+  echo "relativepath vm is running"
+else 
+  echo "launching a ubuntu vm named relativepath"
+  multipass launch --name relativepath 
+fi
+
+
+
+
+
+
+
