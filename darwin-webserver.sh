@@ -58,7 +58,7 @@ fi
 
 # SSh into virtual machine
 
-echo 'ssh -i ./id_ed25519 harmony@192.168.64.8'
+ssh -i ./id_ed25519 harmony@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
 
 # Install nginx on virtual machine
 
