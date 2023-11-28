@@ -53,10 +53,12 @@ then
   echo "relativepath vm is running"
 else 
   echo "launching a ubuntu vm named relativepath"
-  multipass launch --name relativepath 
+  multipass launch --name relativepath --cloud-init cloud-init.yaml
 fi
 
 # SSh into virtual machine
+
+echo 'ssh -i ./id_ed25519 harmony@192.168.64.8'
 
 # Install nginx on virtual machine
 
