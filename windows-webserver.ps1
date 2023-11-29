@@ -32,6 +32,14 @@ else
 }
 
 
+if ( Test-Path .\id_ed25519 -PathType Leaf){
+  Write-Host "ssh key already created"
+}
+else{
+  Write-Host "Creating ssh key pair"
+  ssh-keygen -t ed25519 -f "./id_ed25519" -N ''
+}
+
 if ( get-command multipass )
 {
   write-host "multipass already installed"
