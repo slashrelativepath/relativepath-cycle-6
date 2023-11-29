@@ -46,6 +46,18 @@ else
   ssh-keygen -t ed25519 -f "./id_ed25519" -N ''
 fi
 
+cat <<-EOF > ./cloud-init.yaml
+#cloud-config
+
+users:
+  - default
+  - name: ${USER}
+    ssh_authorized_keys:
+      - $(cat ./id_ed25519.pub)
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+EOF
+
 # Spinning up an ubuntu vm
 
 if ( multipass info relativepath )
@@ -58,7 +70,7 @@ fi
 
 # SSh into virtual machine
 
-ssh -i ./id_ed25519 harmony@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
+ssh -i ./id_ed25519 $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
 
 # Install nginx on virtual machine
 

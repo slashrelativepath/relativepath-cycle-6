@@ -1,9 +1,0 @@
-#cloud-config
-
-users:
-  - default
-  - name: harmony
-    ssh_authorized_keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEZTgPbs0dGS6qGm8jKOTTmSE4kCWJfuAk/+kOGwXOJk harm@Ahavas-MacBook-Pro-2.local
-    shell: /bin/bash
-    sudo: ALL=(ALL) NOPASSWD:ALL
