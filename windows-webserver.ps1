@@ -31,6 +31,15 @@ else
   choco install git.install -y --params "'/GitAndUnixToolsOnPath /WindowsTerminal /NoAutoCrlf'" --force
 }
 
+if ( get-command jq )
+{
+  write-host "jq already installed"
+}
+else
+{
+  write-host "installing jq"
+  choco install -y jq
+}
 
 if ( Test-Path ./id_ed25519 -PathType Leaf){
   Write-Host "ssh key already created"
@@ -60,7 +69,17 @@ else
   write-host "installing multipass"
   choco install -y choco install virtualbox multipass --params="'/HyperVisor:VirtualBox'"
 }
-multipass set local.bridged-network=Wi-Fi
-Start-Sleep -Seconds 5
-multipass launch --name relativepath --cloud-init cloud-init.yaml --bridged
-ssh -i ./id_ed25519 -o StrictHostKeyChecking=no $env:username@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
+
+# launch vm
+if ( multipass info relativepath )
+{
+  write-host "relativepath vm already exists."
+}
+else
+{
+  write-host "creating relativepath vm!"
+  multipass launch --name relativepath --cloud-init cloud-init.yaml
+}
+
+# connect to vm via ssh
+ssh -i ./id_ed25519 -o StrictHostKeyChecking=no $env:username@$(multipass list --format json | jq -re '.list[].ipv4[]')
