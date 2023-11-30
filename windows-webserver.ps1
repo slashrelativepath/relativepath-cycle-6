@@ -28,17 +28,28 @@ if ( get-command git )
 else
 {
   write-host "installing git"
-  choco install -y git.install --params "'/GitAndUnixToolsOnPath /WindowsTerminal'"
+  choco install git.install -y --params "'/GitAndUnixToolsOnPath /WindowsTerminal /NoAutoCrlf'" --force
 }
 
 
-if ( Test-Path .\id_ed25519 -PathType Leaf){
+if ( Test-Path ./id_ed25519 -PathType Leaf){
   Write-Host "ssh key already created"
 }
 else{
   Write-Host "Creating ssh key pair"
-  ssh-keygen -t ed25519 -f "./id_ed25519" -N ''
+  Write-Host "y" | ssh-keygen -t ed25519 -f "./id_ed25519" -N `"`"
 }
+
+@"
+#cloud config
+users:
+  - default
+  - name: $env:username
+    ssh_authorized_keys:
+      - $(cat ./id_ed25519.pub)
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+"@ > cloud-init.yaml
 
 if ( get-command multipass )
 {
@@ -49,6 +60,7 @@ else
   write-host "installing multipass"
   choco install -y choco install virtualbox multipass --params="'/HyperVisor:VirtualBox'"
 }
-
-multipass launch --name relativepath
-multipass shell relativepath
+multipass set local.bridged-network=Wi-Fi
+Start-Sleep -Seconds 5
+multipass launch --name relativepath --cloud-init cloud-init.yaml --bridged
+ssh -i ./id_ed25519 -o StrictHostKeyChecking=no $env:username@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')

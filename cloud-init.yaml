@@ -1,9 +1,0 @@
-# cloud config - needs work
-
-users:
-  - default
-  - name: $env:USERNAME
-    ssh_authorized_keys:
-      - $env:HOME\.ssh\id_ed25519
-    shell: /bin/bash
-    sudo: ALL=(ALL) NOPASSWD:ALL
