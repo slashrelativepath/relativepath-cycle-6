@@ -70,6 +70,8 @@ fi
 
 # SSh into virtual machine
 
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no nginx.sh $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }'):~/
+
 ssh -i ./id_ed25519 -o StrictHostKeyChecking=no  $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
 
 # Install nginx on virtual machine
