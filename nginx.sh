@@ -4,7 +4,7 @@ then
 else
   echo "Installing nginx."
   sudo apt update
-  sudo apt install nginx
+  sudo apt install -y nginx
 fi
 
 
