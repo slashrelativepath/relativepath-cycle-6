@@ -1,5 +1,9 @@
 # powershell script to build a webserver.
 
+Function Get-Wifi-Network{
+  return multipass networks --format yaml | grep wifi -B 1 | awk -F: 'NR==1{print "$1"}'
+}
+$flags=''
 if ( get-command choco )
 {
   write-host "choco already installed"
@@ -71,6 +75,14 @@ else
 }
 
 # launch vm
+if (( $(multipass get local.driver) -eq "virtualbox")) {
+  $network=Get-Wifi-Network
+  multipass set local.bridged-network=$network
+
+  Start-Sleep 5
+  refreshenv
+  $flags=" --bridged "
+}
 if ( multipass info relativepath )
 {
   write-host "relativepath vm already exists."
@@ -78,7 +90,7 @@ if ( multipass info relativepath )
 else
 {
   write-host "creating relativepath vm!"
-  multipass launch --name relativepath --bridged --cloud-init cloud-init.yaml
+  multipass launch --name relativepath $flags --cloud-init cloud-init.yaml
 }
 
 # copy nginx config file over to the remote vm
