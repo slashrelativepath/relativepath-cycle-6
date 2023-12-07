@@ -93,7 +93,7 @@ else
 }
 
 # copy nginx config file over to the remote vm
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no nginx.sh $env:username@$(multipass list --format json | jq -re '.list[].ipv4[]'):~/
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh $env:username@$(multipass list --format json | jq -re '.list[].ipv4[]'):~/
 
 # connect to vm via ssh
 ssh -i ./id_ed25519 -o StrictHostKeyChecking=no $env:username@$(multipass list --format json | jq -re '.list[].ipv4[]')
