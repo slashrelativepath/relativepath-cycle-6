@@ -81,7 +81,7 @@ if (( $(multipass get local.driver) -eq "virtualbox")) {
 
   Start-Sleep 5
   refreshenv
-  $flags=" --bridged "
+  $flags="--bridged"
 }
 if ( multipass info relativepath )
 {
@@ -90,7 +90,7 @@ if ( multipass info relativepath )
 else
 {
   write-host "creating relativepath vm!"
-  multipass launch --name relativepath $flags --cloud-init cloud-init.yaml
+  multipass launch --name relativepath --cloud-init cloud-init.yaml $flags
 }
 
 # copy nginx config file over to the remote vm
