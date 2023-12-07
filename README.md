@@ -19,17 +19,40 @@
 - text editor (nano)
 
 ## Usage
+First we create a vm. using our create script. second we deploy our webserver script.
+The create and destroy vm scripts are divided by operating system.
+
+### Create vm
 
 Mac:
 
-`zsh darwin-webserver.sh`
+`zsh darwin-create-vm.sh`
 
 Linux:
 
-`bash linux-webserver.sh` 
+`bash linux-create-vm.sh` 
 
 Windows: 
 
-`set-executionpolicy bypass -scope process -force; .\windows-webserver.ps1`
+`set-executionpolicy bypass -scope process -force; .\windows-create-vm.ps1`
 
+## Deploy webserver in the VM
 
+`bash webserver.sh`
+
+### Test webserver
+on the VM
+`curl localhost`
+
+from your local workstation (not the VM)
+open http://VMIP in your browser
+
+## Destroy VM
+Mac
+`zsh destroy-vm.sh`
+
+Linux
+`bash destroy-vm.sh`
+
+Windows
+`./destroy-vm.ps1`
