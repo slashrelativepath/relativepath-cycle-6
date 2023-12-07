@@ -1,5 +1,12 @@
 # powershell script to build a webserver.
-
+<#
+  Function to get the name of the wifi interface that multipass is able to integrate with.
+  Precondition: 
+    Must have an UP&RUNNING wifi interface. This isn't fancy enough to go thru
+    all your intefaces and chose the best one...yet.
+  Postcondition:
+    Returns the wifi interface name, or an empty string if you ignored the precondition.
+#>
 Function Get-Wifi-Network{
   return multipass networks --format yaml | grep wifi -B 1 | awk -F: 'NR==1{print "$1"}'
 }
