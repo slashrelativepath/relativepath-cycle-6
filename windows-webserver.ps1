@@ -70,6 +70,17 @@ else
   choco install -y choco install virtualbox multipass --params="'/HyperVisor:VirtualBox'"
 }
 
+if ((multipass get local.bridged-network) -eq 'Wi-Fi')
+{
+  Write-Host 'Multipass bridged networking already set up for Wi-Fi'
+}
+else
+{
+  Write-Host 'Setting multipass bridged to Wi-Fi'
+  multipass set local.bridged-network=Wi-Fi
+  Start-Sleep -Seconds 5
+}
+
 # launch vm
 if ( multipass info relativepath )
 {
