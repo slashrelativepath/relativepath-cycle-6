@@ -28,7 +28,7 @@ else
 
 # posh-git should be installed
 
-if (choco info poshgit)
+if ([bool](choco info poshgit) -eq $True)
 { 
   echo "poshgit already installed"
 }
