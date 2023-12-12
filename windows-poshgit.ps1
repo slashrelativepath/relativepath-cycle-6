@@ -28,14 +28,15 @@ else
 
 # posh-git should be installed
 
-if (choco info poshgit)
+if ([bool](choco info poshgit) -eq $True)
 { 
   echo "poshgit already installed"
 }
 else
 {
   echo "installing poshgit"
-  choco install -y poshgit --force
+  PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+  Import-Module posh-git
 }
 
 
