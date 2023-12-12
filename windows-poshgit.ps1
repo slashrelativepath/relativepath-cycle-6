@@ -35,7 +35,8 @@ if ([bool](choco info poshgit) -eq $True)
 else
 {
   echo "installing poshgit"
-  choco install -y poshgit --force
+  PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+  Import-Module posh-git
 }
 
 
