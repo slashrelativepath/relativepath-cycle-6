@@ -31,6 +31,18 @@ else
   choco install git.install -y --params "'/GitAndUnixToolsOnPath /WindowsTerminal /NoAutoCrlf'" --force
 }
 
+# posh-git should be installed
+if ([bool](choco info poshgit) -eq $True)
+{ 
+  echo "poshgit already installed"
+}
+else
+{
+  echo "installing poshgit"
+  PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+  Import-Module posh-git
+}
+
 if ( get-command jq )
 {
   write-host "jq already installed"
