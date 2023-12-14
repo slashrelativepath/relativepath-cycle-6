@@ -69,7 +69,7 @@ else
 fi
 
 # Copy webserver.sh to vm
-scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }'):~/
+scp -i ./id_ed25519 -o StrictHostKeyChecking=no webserver.sh index.html styles.css $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }'):~/
 
 # Install nginx on virtual machine
 ssh -i ./id_ed25519 -o StrictHostKeyChecking=no  $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 
@@ -78,8 +78,9 @@ ssh -i ./id_ed25519 -o StrictHostKeyChecking=no  $USER@$(multipass info relative
 # Validate webserver
 curl $(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
 
-
-
+# Login to vm
+ssh -i ./id_ed25519 -o StrictHostKeyChecking=no  $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2
+}') 
 
 
 
